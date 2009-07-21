@@ -1,0 +1,7 @@
+= sinatra-openid
+
+Description goes here.
+
+== Copyright
+
+Copyright (c) 2009 SubbaRao Pasupuleti. See LICENSE for details.
