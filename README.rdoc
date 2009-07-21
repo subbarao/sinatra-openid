@@ -5,3 +5,15 @@ Description goes here.
 == Copyright
 
 Copyright (c) 2009 SubbaRao Pasupuleti. See LICENSE for details.
+
+== sample sinatra application 
+
+require 'rubygems'
+require 'sinatra'
+gem 'sinatra-openid'
+require 'sinatra/openid'
+
+get '/' do
+  '<a href="/login">login</a>'
+end
+
