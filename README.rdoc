@@ -10,10 +10,13 @@ Copyright (c) 2009 SubbaRao Pasupuleti. See LICENSE for details.
 
     require 'rubygems'
     require 'sinatra'
-    gem 'sinatra-openid'
+    gem 'subbarao-sinatra-openid'
     require 'sinatra/openid'
 
     get '/' do
       '<a href="/login">login</a>'
     end
+
+start the sinatra app by ruby app.rb
+point to http://localhost:4567
 
