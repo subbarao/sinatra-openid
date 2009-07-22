@@ -20,6 +20,9 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "lib/sinatra/openid.rb",
+    "views/login.haml",
+    "public/js/open-selector-0.3.js",
+    "public/js/jquery-1.2.6.min.js",
     "test/test_helper.rb",
     "test/sinatra-openid_test.rb",
   ]
@@ -38,19 +41,22 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<sinatra>, [">= 0.9.2"])
-      s.add_development_dependency(%q<rack>, [">= 1.0.0"])
-      s.add_development_dependency(%q<rack-test>, [">= 0.3.0"])
+      s.add_runtime_dependency(%q<rack>, [">= 1.0.0"])
+      s.add_runtime_dependency(%q<rack-test>, [">= 0.3.0"])
       s.add_runtime_dependency(%q<rack-openid>, [">= 0"])
+      s.add_runtime_dependency(%q<haml>, [">= 2.0.4"])
     else
       s.add_dependency(%q<sinatra>, [">= 0.9.2"])
       s.add_dependency(%q<rack>, [">= 1.0.0"])
       s.add_dependency(%q<rack-test>, [">= 0.3.0"])
       s.add_dependency(%q<rack-openid>, [">= 0"])
+      s.add_dependency(%q<haml>, [">= 2.0.4"])
     end
   else
     s.add_dependency(%q<sinatra>, [">= 0.9.2"])
     s.add_dependency(%q<rack>, [">= 1.0.0"])
     s.add_dependency(%q<rack-test>, [">= 0.3.0"])
+    s.add_dependency(%q<haml>, [">= 2.0.4"])
     s.add_dependency(%q<rack-openid>, [">= 0"])
   end
 end

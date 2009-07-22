@@ -1,0 +1,29 @@
+!!!
+%html
+  %head
+    %meta{ "http-equiv" => "content-type" , :content=>"text/html; charset=utf-8" }
+    %script{:src => "/js/jquery-1.2.6.min.js",:type => "text/javascript"}
+    %script{:src => "/js/open-selector-0.3.js",:type => "text/javascript"}
+    %style{:type => "text/css", :media => "screen"}
+      :plain
+        input, select, textarea {
+            font-size: 15px;
+            padding: 3px;
+            border: 1px solid #CCC;
+        }
+        /*input:focus, select:focus, textarea:focus { background: #FFFDAA; }*/
+        input.boton {
+            background-color: #D0D0D0;
+            color: #333;
+            border: 1px outset #CCC;
+        }
+        input.boton:hover {color: #00C;}
+    :javascript
+      $(document).ready(function() { 
+      open_selector.openid_form_id = 'openid_form';
+      open_selector.openid_box_id = 'openid_identifier';
+      open_selector.init();});
+  %body
+    %form#openid_form{ :action => '/login', :method => 'post' }
+      %input#openid_identifier{ :type => 'text', :name => "openid_identifier"  }
+      %input{ :type => 'submit', :value => 'Login via OpenID' }
