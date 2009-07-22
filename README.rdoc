@@ -8,12 +8,15 @@ Copyright (c) 2009 SubbaRao Pasupuleti. See LICENSE for details.
 
 == sample sinatra application 
 
-require 'rubygems'
-require 'sinatra'
-gem 'sinatra-openid'
-require 'sinatra/openid'
+    require 'rubygems'
+    require 'sinatra'
+    gem 'subbarao-sinatra-openid'
+    require 'sinatra/openid'
 
-get '/' do
-  '<a href="/login">login</a>'
-end
+    get '/' do
+      '<a href="/login">login</a>'
+    end
+
+start the sinatra app by ruby app.rb
+point to http://localhost:4567
 
