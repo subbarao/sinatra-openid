@@ -19,8 +19,15 @@ module Sinatra
       def authorize!
         redirect '/login' unless authorized?
       end
+
       def logout!
         session[:authorized] = false
+      end
+
+      def verify_user( logged_in_user )
+        options.admin_urls.find do | user |
+          user == logged_in_user
+        end
       end
 
     end
@@ -46,7 +53,12 @@ module Sinatra
       post '/login' do
         if resp = request.env["rack.openid.response"]
           if resp.status == :success
-            session[:authorized] = true
+            if verify_user(resp.identity_url)
+              session[:authorized] = true
+              redirect '/'
+            else
+              "unable to verify user: #{resp.identity_url}"
+            end
           else
             "Error: #{resp.status}"
           end
