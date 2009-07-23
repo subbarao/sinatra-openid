@@ -3,6 +3,7 @@ require 'haml'
 require 'sinatra/base'
 gem 'rack-openid'
 require 'rack/openid'
+
 module Sinatra
   module Openid
 
@@ -22,12 +23,6 @@ module Sinatra
 
       def logout!
         session[:authorized] = false
-      end
-
-      def verify_user( logged_in_user )
-        options.admin_urls.find do | user |
-          user == logged_in_user
-        end
       end
 
     end
@@ -53,7 +48,7 @@ module Sinatra
       post '/login' do
         if resp = request.env["rack.openid.response"]
           if resp.status == :success
-            if verify_user(resp.identity_url)
+            if options.admin_urls.index(resp.identity_url)
               session[:authorized] = true
               redirect '/'
             else
@@ -80,4 +75,3 @@ module Sinatra
 
   register Openid
 end
-
