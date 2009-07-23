@@ -1,8 +1,8 @@
-gem 'rack-openid'
-require 'rack'
+gem 'ruby-openid', '>=2.1.2'
 require 'haml'
-require 'rack/openid'
 require 'sinatra/base'
+gem 'rack-openid'
+require 'rack/openid'
 module Sinatra
   module Openid
 
@@ -10,6 +10,10 @@ module Sinatra
 
       def authorized?
         session[:authorized]
+      end
+
+      def root_url
+        request.url.match(/(^.*\/{2}[^\/]*)/)[1]
       end
 
       def authorize!
@@ -39,14 +43,9 @@ module Sinatra
         haml :login,:views_directory => File.dirname(__FILE__)+"/../../views"
       end
 
-      get '/logout' do
-        session.clear
-        [ 302, { 'Location' => '/' }, [] ]
-      end
-
       post '/login' do
         if resp = request.env["rack.openid.response"]
-          if resp.status == :success && options.admin_urls? && options.admin_urls.index(resp.identity_url).nil?
+          if resp.status == :success
             session[:authorized] = true
           else
             "Error: #{resp.status}"
@@ -58,7 +57,15 @@ module Sinatra
           throw :halt, [401, 'got openid?']
         end
       end
+
+      get '/logout' do
+        session.clear
+        [ 302, { 'Location' => '/' }, [] ]
+      end
+
     end
   end
+
   register Openid
 end
+
